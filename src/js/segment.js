@@ -10,12 +10,28 @@ $(document)
                 "email": $(this).find("input[aria-label='email']").val() || "niketnavy02@gmail.com",
                 "name": $(this).find("input[aria-label='name']").val() || "niket kumar"
             }
+
+            var message =  $(this).find("input[placeholder='Your message']").val() || "Your message"
             
             analytics.identify(userDetail.email, userDetail);
 
             analytics.track("submit", {
                 email: userDetail.email, 
-                accountType: "Facebook"
+                name: userDetail.name,
+                message: message
+              });
+        })
+
+
+        $("#newsletter").find("button").click(function(){
+            var userDetail = {
+                "email": $(this).find("input[placeholder='Enter email']").val() || "niketnavy02@gmail.com",
+                "name": $(this).find("input[placeholder='Enter Name']").val() || "niket kumar"
+            }
+
+            analytics.track("click", {
+                email: userDetail.email, 
+                name: userDetail.name
               });
         })
     });
